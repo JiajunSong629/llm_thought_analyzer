@@ -1,0 +1,1194 @@
+{
+    "config": {
+        "question": "A maintenance worker has to clean a university with 210 floors. They have 10 days to get it done. It takes them 20 minutes per floor. If they work 10 hours each day, what percentage of their day, on average, is spent cleaning floors?",
+        "reasoning_process": "Let's think step by step. The worker has to clean 210 floors in 10 days, so they need to clean 210 / 10 = 21 floors per day. It takes them 20 minutes per floor, so they spend 20 * 21 = 420 minutes per day cleaning. So they spend 420 / 60 = 7 hours per day cleaning. They work 10 hours each day, so they spend 7 / 10 * 100 = 70% of their day cleaning. The answer is 70. #### 70",
+        "model_provider": "gemini",
+        "sampling_model_id": "gemma_9B_it",
+        "n_samples": 20
+    },
+    "templatized_question": "A maintenance worker has to clean a university with {number_of_floors} floors. They have {number_of_days} days to get it done. It takes them {cleaning_time_per_floor} minutes per floor. If they work {work_hours_per_day} hours each day, what percentage of their day, on average, is spent cleaning floors?",
+    "factual_assignment": {
+        "number_of_floors": 210,
+        "number_of_days": 10,
+        "cleaning_time_per_floor": 20,
+        "work_hours_per_day": 10
+    },
+    "ground_truth_function": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    floors_per_day = number_of_floors / number_of_days\n    cleaning_time_per_day_minutes = cleaning_time_per_floor * floors_per_day\n    cleaning_time_per_day_hours = cleaning_time_per_day_minutes / 60\n    percentage_cleaning = cleaning_time_per_day_hours / work_hours_per_day * 100\n    answer = percentage_cleaning\n    return answer",
+    "results": [
+        {
+            "sample_id": 1,
+            "added": true,
+            "sample": "Let's think step by step. Here's how to solve this problem:\n\n1. **Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n\n2. **Convert cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n\n3. **Calculate the percentage of the day spent cleaning:** (70 hours / 10 days) * (24 hours/day) / 10 hours/day * 100% = 168%\n\n   *Note: The answer is greater than 100% because they are working more than a full day to complete the task.* \n\n\nThe answer is 168%.",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    total_cleaning_time_minutes = number_of_floors * cleaning_time_per_floor\n    total_cleaning_time_hours = total_cleaning_time_minutes / 60\n    percentage_cleaning = (total_cleaning_time_hours / number_of_days) * (24 / work_hours_per_day) * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. Here's how to solve this problem:\n\n1. **Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n\n2. **Convert cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n\n3. **Calculate the percentage of the day spent cleaning:** (70 hours / 10 days) * (24 hours/day) / 10 hours/day * 100% = 168%\n\n   *Note: The answer is greater than 100% because they are working more than a full day to complete the task.* \n\n\nThe answer is 168%.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "total_cleaning_time_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "total_cleaning_time_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "total_cleaning_time_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "total_cleaning_time_hours / number_of_days * (24 / work_hours_per_day) * 100"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 2,
+            "added": false,
+            "sample": "Let's think step by step.\n\n1. **Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n\n2. **Convert cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n\n3. **Calculate the percentage of the day spent cleaning:** (70 hours / 10 days) * (24 hours/day) = 168 hours / 10 days * 24 hours/day = 16.8 hours/day\n\n4. **Convert cleaning hours to percentage:** (16.8 hours/day / 24 hours/day) * 100% = 70%\n\n\nThe answer is 70%.",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    floors_per_day = number_of_floors / number_of_days\n    cleaning_time_per_day_minutes = cleaning_time_per_floor * floors_per_day\n    cleaning_time_per_day_hours = cleaning_time_per_day_minutes / 60\n    percentage_cleaning = cleaning_time_per_day_hours / work_hours_per_day * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. The worker has to clean 210 floors in 10 days, so they need to clean 210 / 10 = 21 floors per day. It takes them 20 minutes per floor, so they spend 20 * 21 = 420 minutes per day cleaning. So they spend 420 / 60 = 7 hours per day cleaning. They work 10 hours each day, so they spend 7 / 10 * 100 = 70% of their day cleaning. The answer is 70. #### 70",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "floors_per_day",
+                    "operation": "division",
+                    "dependencies": [],
+                    "expression": "number_of_floors / number_of_days"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "cleaning_time_per_day_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "cleaning_time_per_floor * floors_per_day"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "cleaning_time_per_day_minutes / 60"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "cleaning_time_per_day_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 5,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        4
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 3,
+            "added": true,
+            "sample": "Let's think step by step. \n\nFirst, calculate the total time needed to clean all floors: 210 floors * 20 minutes/floor = 4200 minutes.\n\nConvert total cleaning time to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nCalculate the percentage of their day spent cleaning: (70 hours / 10 days) * (24 hours/day) * (100%) = 168%.\n\n\n\nThe answer is 168%. \n\n\nHowever, this answer doesn't make sense because a percentage cannot be greater than 100%. This indicates there might be an error in the problem setup. \n\nIt's impossible for the worker to clean all 210 floors in 10 days while working only 10 hours per day if it takes 20 minutes per floor.",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    cleaning_time_per_day_minutes = number_of_floors * cleaning_time_per_floor\n    cleaning_time_per_day_hours = cleaning_time_per_day_minutes / 60\n    percentage_cleaning = (cleaning_time_per_day_hours / number_of_days) * 24 * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. \n\nFirst, calculate the total time needed to clean all floors: 210 floors * 20 minutes/floor = 4200 minutes.\n\nConvert total cleaning time to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nCalculate the percentage of their day spent cleaning: (70 hours / 10 days) * (24 hours/day) * (100%) = 168%.\n\n\n\nThe answer is 168%. \n\n\nHowever, this answer doesn't make sense because a percentage cannot be greater than 100%. This indicates there might be an error in the problem setup. \n\nIt's impossible for the worker to clean all 210 floors in 10 days while working only 10 hours per day if it takes 20 minutes per floor.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "cleaning_time_per_day_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "cleaning_time_per_day_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "cleaning_time_per_day_hours / number_of_days * 24 * 100"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 4,
+            "added": false,
+            "sample": "** The maintenance worker spends an average of **70%** of their day cleaning floors. #### 70%",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    floors_per_day = number_of_floors / number_of_days\n    cleaning_time_per_day_minutes = cleaning_time_per_floor * floors_per_day\n    cleaning_time_per_day_hours = cleaning_time_per_day_minutes / 60\n    percentage_cleaning = cleaning_time_per_day_hours / work_hours_per_day * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. The worker has to clean 210 floors in 10 days, so they need to clean 210 / 10 = 21 floors per day. It takes them 20 minutes per floor, so they spend 20 * 21 = 420 minutes per day cleaning. So they spend 420 / 60 = 7 hours per day cleaning. They work 10 hours each day, so they spend 7 / 10 * 100 = 70% of their day cleaning. The answer is 70. #### 70",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "floors_per_day",
+                    "operation": "division",
+                    "dependencies": [],
+                    "expression": "number_of_floors / number_of_days"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "cleaning_time_per_day_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "cleaning_time_per_floor * floors_per_day"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "cleaning_time_per_day_minutes / 60"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "cleaning_time_per_day_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 5,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        4
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 5,
+            "added": true,
+            "sample": "Let's think step by step.  First, we need to find the total time spent cleaning: 210 floors * 20 minutes/floor = 4200 minutes.\n\nNext, convert that time to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nNow we can find the percentage of each day spent cleaning: (70 hours / 10 hours/day) * 100% = 700%.  \n\nHowever, this answer doesn't make sense because it's greater than 100%. This means the worker can't complete the task within the given timeframe.  There's an error in the problem setup. \n\nLet me know if you want to explore a scenario where the task is achievable!",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    total_cleaning_time_minutes = number_of_floors * cleaning_time_per_floor\n    total_cleaning_time_hours = total_cleaning_time_minutes / 60\n    percentage_cleaning = (total_cleaning_time_hours / work_hours_per_day) * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step.  First, we need to find the total time spent cleaning: 210 floors * 20 minutes/floor = 4200 minutes.\n\nNext, convert that time to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nNow we can find the percentage of each day spent cleaning: (70 hours / 10 hours/day) * 100% = 700%.  \n\nHowever, this answer doesn't make sense because it's greater than 100%. This means the worker can't complete the task within the given timeframe.  There's an error in the problem setup. \n\nLet me know if you want to explore a scenario where the task is achievable!",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "total_cleaning_time_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "total_cleaning_time_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "total_cleaning_time_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "total_cleaning_time_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 6,
+            "added": false,
+            "sample": "Let's think step by step. \n\n* **Total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n* **Total minutes worked in 10 days:** 10 days * 10 hours/day * 60 minutes/hour = 6000 minutes\n* **Percentage of time spent cleaning:** (4200 minutes / 6000 minutes) * 100% = 70%\n\nThe answer is 70%. #### 70%",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    floors_per_day = number_of_floors / number_of_days\n    cleaning_time_per_day_minutes = cleaning_time_per_floor * floors_per_day\n    cleaning_time_per_day_hours = cleaning_time_per_day_minutes / 60\n    percentage_cleaning = cleaning_time_per_day_hours / work_hours_per_day * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. The worker has to clean 210 floors in 10 days, so they need to clean 210 / 10 = 21 floors per day. It takes them 20 minutes per floor, so they spend 20 * 21 = 420 minutes per day cleaning. So they spend 420 / 60 = 7 hours per day cleaning. They work 10 hours each day, so they spend 7 / 10 * 100 = 70% of their day cleaning. The answer is 70. #### 70",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "floors_per_day",
+                    "operation": "division",
+                    "dependencies": [],
+                    "expression": "number_of_floors / number_of_days"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "cleaning_time_per_day_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "cleaning_time_per_floor * floors_per_day"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "cleaning_time_per_day_minutes / 60"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "cleaning_time_per_day_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 5,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        4
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 7,
+            "added": false,
+            "sample": "Let's think step by step. First, calculate the total time spent cleaning: 210 floors * 20 minutes/floor = 4200 minutes. Convert that to hours: 4200 minutes / 60 minutes/hour = 70 hours. Calculate the percentage of their day spent cleaning: (70 hours / 10 days) * (24 hours/day) * 100% = 1680%.  \n\nThis answer doesn't make sense in the real world. It means they're spending more than a full day cleaning each day.  This indicates there might be an error in the problem setup.",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    total_cleaning_time_minutes = number_of_floors * cleaning_time_per_floor\n    total_cleaning_time_hours = total_cleaning_time_minutes / 60\n    percentage_cleaning = (total_cleaning_time_hours / number_of_days) * (24 / work_hours_per_day) * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. Here's how to solve this problem:\n\n1. **Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n\n2. **Convert cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n\n3. **Calculate the percentage of the day spent cleaning:** (70 hours / 10 days) * (24 hours/day) / 10 hours/day * 100% = 168%\n\n   *Note: The answer is greater than 100% because they are working more than a full day to complete the task.* \n\n\nThe answer is 168%.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "total_cleaning_time_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "total_cleaning_time_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "total_cleaning_time_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "total_cleaning_time_hours / number_of_days * (24 / work_hours_per_day) * 100"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 8,
+            "added": false,
+            "sample": "Let's think step by step. Here's how to solve this problem:\n\n1. **Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n\n2. **Convert cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n\n3. **Calculate daily cleaning time:** 70 hours / 10 days = 7 hours/day\n\n4. **Calculate percentage of day spent cleaning:** (7 hours/day / 10 hours/day) * 100% = 70%\n\n\nThe maintenance worker spends an average of **70%** of their day cleaning floors. #### 70%",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    floors_per_day = number_of_floors / number_of_days\n    cleaning_time_per_day_minutes = cleaning_time_per_floor * floors_per_day\n    cleaning_time_per_day_hours = cleaning_time_per_day_minutes / 60\n    percentage_cleaning = cleaning_time_per_day_hours / work_hours_per_day * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. The worker has to clean 210 floors in 10 days, so they need to clean 210 / 10 = 21 floors per day. It takes them 20 minutes per floor, so they spend 20 * 21 = 420 minutes per day cleaning. So they spend 420 / 60 = 7 hours per day cleaning. They work 10 hours each day, so they spend 7 / 10 * 100 = 70% of their day cleaning. The answer is 70. #### 70",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "floors_per_day",
+                    "operation": "division",
+                    "dependencies": [],
+                    "expression": "number_of_floors / number_of_days"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "cleaning_time_per_day_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "cleaning_time_per_floor * floors_per_day"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "cleaning_time_per_day_minutes / 60"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "cleaning_time_per_day_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 5,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        4
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 9,
+            "added": false,
+            "sample": "Let's think step by step. First, find the total time spent cleaning: 210 floors * 20 minutes/floor = 4200 minutes. Convert that to hours: 4200 minutes / 60 minutes/hour = 70 hours.  \nNow, find the percentage of the day spent cleaning: (70 hours / 10 days) * (24 hours/day) / 10 hours/day = 168%.\n\nHowever, this answer doesn't make sense because a percentage can't be greater than 100%. This problem highlights that sometimes real-world scenarios don't fit neatly into calculations.",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    total_cleaning_time_minutes = number_of_floors * cleaning_time_per_floor\n    total_cleaning_time_hours = total_cleaning_time_minutes / 60\n    percentage_cleaning = (total_cleaning_time_hours / work_hours_per_day) * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step.  First, we need to find the total time spent cleaning: 210 floors * 20 minutes/floor = 4200 minutes.\n\nNext, convert that time to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nNow we can find the percentage of each day spent cleaning: (70 hours / 10 hours/day) * 100% = 700%.  \n\nHowever, this answer doesn't make sense because it's greater than 100%. This means the worker can't complete the task within the given timeframe.  There's an error in the problem setup. \n\nLet me know if you want to explore a scenario where the task is achievable!",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "total_cleaning_time_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "total_cleaning_time_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "total_cleaning_time_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "total_cleaning_time_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 10,
+            "added": true,
+            "sample": "Let's think step by step. First, we need to find the total time needed to clean all floors: 210 floors * 20 minutes/floor = 4200 minutes. \n\nNext, we need to convert this to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nNow, we can find the percentage of their day spent cleaning: (70 hours / 10 days) * (24 hours/day) / 10 hours/day * 100% = 168%.\n\n\nThis answer is greater than 100% because the worker needs to work more than a full day each day to clean all the floors in 10 days.",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    total_cleaning_time_minutes = number_of_floors * cleaning_time_per_floor\n    total_cleaning_time_hours = total_cleaning_time_minutes / 60\n    average_cleaning_time_per_day_hours = total_cleaning_time_hours / number_of_days\n    percentage_cleaning = (average_cleaning_time_per_day_hours / work_hours_per_day) * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. First, we need to find the total time needed to clean all floors: 210 floors * 20 minutes/floor = 4200 minutes. \n\nNext, we need to convert this to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nNow, we can find the percentage of their day spent cleaning: (70 hours / 10 days) * (24 hours/day) / 10 hours/day * 100% = 168%.\n\n\nThis answer is greater than 100% because the worker needs to work more than a full day each day to clean all the floors in 10 days.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "total_cleaning_time_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "total_cleaning_time_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "total_cleaning_time_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "average_cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "total_cleaning_time_hours / number_of_days"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "average_cleaning_time_per_day_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 5,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        4
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 11,
+            "added": true,
+            "sample": "Let's think step by step. \n\n* **Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n* **Convert cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n* **Calculate the percentage of the day spent cleaning:** (70 hours / 10 days) * (100% / 8 hours/day) = 87.5%\n\nThe answer is 87.5%",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    floors_per_day = number_of_floors / number_of_days\n    cleaning_time_per_day_minutes = number_of_floors * cleaning_time_per_floor\n    cleaning_time_per_day_hours = cleaning_time_per_day_minutes / 60\n    percentage_cleaning = (cleaning_time_per_day_hours / number_of_days) / 8 * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. \n\n* **Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n* **Convert cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n* **Calculate the percentage of the day spent cleaning:** (70 hours / 10 days) * (100% / 8 hours/day) = 87.5%\n\nThe answer is 87.5%",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "floors_per_day",
+                    "operation": "division",
+                    "dependencies": [],
+                    "expression": "number_of_floors / number_of_days"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "cleaning_time_per_day_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "cleaning_time_per_day_minutes / 60"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "cleaning_time_per_day_hours / number_of_days / 8 * 100"
+                },
+                {
+                    "step_id": 5,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        4
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 12,
+            "added": false,
+            "sample": "Let's think step by step.\n\n**1. Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n\n**2. Convert cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n\n**3. Calculate the percentage of the day spent cleaning:** (70 hours / 10 days) * (24 hours/day) / 10 hours/day * 100%\n\n**4. Simplify the calculation:** (70 hours / 10 days) * 2.4 = 16.8 hours/day\n\n**5. Calculate the percentage:** 16.8 hours/day / 10 hours/day * 100% = 168%\n\n\n**Therefore, the maintenance worker spends an average of 168% of their day cleaning floors.** \n\nThis answer is greater than 100% because they are working more than a full day to complete the task.",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    total_cleaning_time_minutes = number_of_floors * cleaning_time_per_floor\n    total_cleaning_time_hours = total_cleaning_time_minutes / 60\n    percentage_cleaning = (total_cleaning_time_hours / work_hours_per_day) * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step.  First, we need to find the total time spent cleaning: 210 floors * 20 minutes/floor = 4200 minutes.\n\nNext, convert that time to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nNow we can find the percentage of each day spent cleaning: (70 hours / 10 hours/day) * 100% = 700%.  \n\nHowever, this answer doesn't make sense because it's greater than 100%. This means the worker can't complete the task within the given timeframe.  There's an error in the problem setup. \n\nLet me know if you want to explore a scenario where the task is achievable!",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "total_cleaning_time_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "total_cleaning_time_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "total_cleaning_time_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "total_cleaning_time_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 13,
+            "added": true,
+            "sample": "Let's think step by step. Here's how to solve this problem:\n\n1. **Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n2. **Convert total cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n3. **Calculate the percentage of the day spent cleaning:** (70 hours / 10 days) * (24 hours/day) * (1/100) = 16.8%\n\n\nThe answer is 16.8%. #### 16.8%",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    total_cleaning_time_minutes = number_of_floors * cleaning_time_per_floor\n    total_cleaning_time_hours = total_cleaning_time_minutes / 60\n    percentage_cleaning = (total_cleaning_time_hours / number_of_days) / work_hours_per_day * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. Here's how to solve this problem:\n\n1. **Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n2. **Convert total cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n3. **Calculate the percentage of the day spent cleaning:** (70 hours / 10 days) * (24 hours/day) * (1/100) = 16.8%\n\n\nThe answer is 16.8%. #### 16.8%",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "total_cleaning_time_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "total_cleaning_time_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "total_cleaning_time_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "total_cleaning_time_hours / number_of_days / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 14,
+            "added": false,
+            "sample": "Let's think step by step.  First, calculate the total cleaning time: 210 floors * 20 minutes/floor = 4200 minutes.  Convert this to hours: 4200 minutes / 60 minutes/hour = 70 hours.  Now, calculate the percentage of time spent cleaning: (70 hours / 10 days * 10 hours/day) * 100% = 70%.  The answer is 70%. #### 70%",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    floors_per_day = number_of_floors / number_of_days\n    cleaning_time_per_day_minutes = cleaning_time_per_floor * floors_per_day\n    cleaning_time_per_day_hours = cleaning_time_per_day_minutes / 60\n    percentage_cleaning = cleaning_time_per_day_hours / work_hours_per_day * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. The worker has to clean 210 floors in 10 days, so they need to clean 210 / 10 = 21 floors per day. It takes them 20 minutes per floor, so they spend 20 * 21 = 420 minutes per day cleaning. So they spend 420 / 60 = 7 hours per day cleaning. They work 10 hours each day, so they spend 7 / 10 * 100 = 70% of their day cleaning. The answer is 70. #### 70",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "floors_per_day",
+                    "operation": "division",
+                    "dependencies": [],
+                    "expression": "number_of_floors / number_of_days"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "cleaning_time_per_day_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "cleaning_time_per_floor * floors_per_day"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "cleaning_time_per_day_minutes / 60"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "cleaning_time_per_day_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 5,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        4
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 15,
+            "added": false,
+            "sample": "Let's think step by step. First, find the total time spent cleaning: 210 floors * 20 minutes/floor = 4200 minutes.\n\nThen convert that to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nNext, calculate the percentage of their day spent cleaning: (70 hours / 10 days) * (24 hours/day) = 168 hours / 10 days = 16.8 hours per day.\n\nFinally, calculate the percentage: (16.8 hours/day / 10 hours/day) * 100% = 168%.\n\nHowever, this answer doesn't make sense because it's more than 100%. This indicates there's an error in the problem setup. It's impossible to spend more than 100% of a day on a task.",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    total_cleaning_time_minutes = number_of_floors * cleaning_time_per_floor\n    total_cleaning_time_hours = total_cleaning_time_minutes / 60\n    percentage_cleaning = (total_cleaning_time_hours / work_hours_per_day) * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step.  First, we need to find the total time spent cleaning: 210 floors * 20 minutes/floor = 4200 minutes.\n\nNext, convert that time to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nNow we can find the percentage of each day spent cleaning: (70 hours / 10 hours/day) * 100% = 700%.  \n\nHowever, this answer doesn't make sense because it's greater than 100%. This means the worker can't complete the task within the given timeframe.  There's an error in the problem setup. \n\nLet me know if you want to explore a scenario where the task is achievable!",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "total_cleaning_time_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "total_cleaning_time_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "total_cleaning_time_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "total_cleaning_time_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 16,
+            "added": false,
+            "sample": "** The maintenance worker spends an average of 87.5% of their day cleaning floors. #### 87.5%",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    floors_per_day = number_of_floors / number_of_days\n    cleaning_time_per_day_minutes = number_of_floors * cleaning_time_per_floor\n    cleaning_time_per_day_hours = cleaning_time_per_day_minutes / 60\n    percentage_cleaning = (cleaning_time_per_day_hours / number_of_days) / 8 * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. \n\n* **Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n* **Convert cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n* **Calculate the percentage of the day spent cleaning:** (70 hours / 10 days) * (100% / 8 hours/day) = 87.5%\n\nThe answer is 87.5%",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "floors_per_day",
+                    "operation": "division",
+                    "dependencies": [],
+                    "expression": "number_of_floors / number_of_days"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "cleaning_time_per_day_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "cleaning_time_per_day_minutes / 60"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "cleaning_time_per_day_hours / number_of_days / 8 * 100"
+                },
+                {
+                    "step_id": 5,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        4
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 17,
+            "added": false,
+            "sample": "Let's think step by step.\n\n1. **Total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n2. **Total cleaning time in hours:** 4200 minutes / 60 minutes/hour = 70 hours\n3. **Percentage of day spent cleaning:** (70 hours / 10 days) * (24 hours/day) * 100% = 1680%\n\n**Wait!** That's more than 100%. This means the worker can't possibly clean all 210 floors in 10 days working 10 hours a day. There's an error in the problem setup.",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    total_cleaning_time_minutes = number_of_floors * cleaning_time_per_floor\n    total_cleaning_time_hours = total_cleaning_time_minutes / 60\n    average_cleaning_time_per_day_hours = total_cleaning_time_hours / number_of_days\n    percentage_cleaning = (average_cleaning_time_per_day_hours / work_hours_per_day) * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. First, we need to find the total time needed to clean all floors: 210 floors * 20 minutes/floor = 4200 minutes. \n\nNext, we need to convert this to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nNow, we can find the percentage of their day spent cleaning: (70 hours / 10 days) * (24 hours/day) / 10 hours/day * 100% = 168%.\n\n\nThis answer is greater than 100% because the worker needs to work more than a full day each day to clean all the floors in 10 days.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "total_cleaning_time_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "total_cleaning_time_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "total_cleaning_time_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "average_cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "total_cleaning_time_hours / number_of_days"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "average_cleaning_time_per_day_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 5,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        4
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 18,
+            "added": false,
+            "sample": "Let's think step by step. 10 hours is 10 * 60 = 600 minutes. They spend 210 floors * 20 minutes/floor = 4200 minutes cleaning. So they spend 4200 / 600 = 7 hours cleaning per day. That's 7 / 10 = 70% of their day. The answer is 70%. #### 70%",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    floors_per_day = number_of_floors / number_of_days\n    cleaning_time_per_day_minutes = cleaning_time_per_floor * floors_per_day\n    cleaning_time_per_day_hours = cleaning_time_per_day_minutes / 60\n    percentage_cleaning = cleaning_time_per_day_hours / work_hours_per_day * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. The worker has to clean 210 floors in 10 days, so they need to clean 210 / 10 = 21 floors per day. It takes them 20 minutes per floor, so they spend 20 * 21 = 420 minutes per day cleaning. So they spend 420 / 60 = 7 hours per day cleaning. They work 10 hours each day, so they spend 7 / 10 * 100 = 70% of their day cleaning. The answer is 70. #### 70",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "floors_per_day",
+                    "operation": "division",
+                    "dependencies": [],
+                    "expression": "number_of_floors / number_of_days"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "cleaning_time_per_day_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "cleaning_time_per_floor * floors_per_day"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "cleaning_time_per_day_minutes / 60"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "cleaning_time_per_day_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 5,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        4
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 19,
+            "added": false,
+            "sample": "Let's think step by step.  \n\n* **Calculate total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes \n* **Convert total cleaning time to hours:** 4200 minutes / 60 minutes/hour = 70 hours\n* **Calculate the percentage of the day spent cleaning:** (70 hours / 10 days) * (24 hours/day) * 100% = 1680%\n\n**Wait!** That percentage is way too high. This means something isn't right with the problem setup. It's impossible to spend more than 100% of the day cleaning.",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    total_cleaning_time_minutes = number_of_floors * cleaning_time_per_floor\n    total_cleaning_time_hours = total_cleaning_time_minutes / 60\n    percentage_cleaning = (total_cleaning_time_hours / work_hours_per_day) * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step.  First, we need to find the total time spent cleaning: 210 floors * 20 minutes/floor = 4200 minutes.\n\nNext, convert that time to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nNow we can find the percentage of each day spent cleaning: (70 hours / 10 hours/day) * 100% = 700%.  \n\nHowever, this answer doesn't make sense because it's greater than 100%. This means the worker can't complete the task within the given timeframe.  There's an error in the problem setup. \n\nLet me know if you want to explore a scenario where the task is achievable!",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "total_cleaning_time_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "total_cleaning_time_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "total_cleaning_time_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "total_cleaning_time_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        },
+        {
+            "sample_id": 20,
+            "added": false,
+            "sample": "Let's think step by step. \n\n* **Total cleaning time:** 210 floors * 20 minutes/floor = 4200 minutes\n* **Total cleaning time in hours:** 4200 minutes / 60 minutes/hour = 70 hours\n* **Percentage of day spent cleaning:** (70 hours / 10 days) * (24 hours/day) * 100% = 1680%\n\nThis answer seems strange, right?  \n\n**The issue:**\n\nThe problem implies they clean 210 floors *every* day. That's not possible with the given time.  \n\n**To fix this, we'd need to know:**\n\n* Do they clean all floors at once?\n* Do they spread the cleaning across the 10 days? \n\n\n\nLet me know if you want to explore a scenario where they clean the floors over the 10 days!",
+            "function": {
+                "function_str": "def solution(number_of_floors, number_of_days, cleaning_time_per_floor, work_hours_per_day):\n    total_cleaning_time_minutes = number_of_floors * cleaning_time_per_floor\n    total_cleaning_time_hours = total_cleaning_time_minutes / 60\n    average_cleaning_time_per_day_hours = total_cleaning_time_hours / number_of_days\n    percentage_cleaning = (average_cleaning_time_per_day_hours / work_hours_per_day) * 100\n    answer = percentage_cleaning\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "number_of_floors": 210,
+                        "number_of_days": 10,
+                        "cleaning_time_per_floor": 20,
+                        "work_hours_per_day": 10
+                    },
+                    "reasoning_process": "Let's think step by step. First, we need to find the total time needed to clean all floors: 210 floors * 20 minutes/floor = 4200 minutes. \n\nNext, we need to convert this to hours: 4200 minutes / 60 minutes/hour = 70 hours.\n\nNow, we can find the percentage of their day spent cleaning: (70 hours / 10 days) * (24 hours/day) / 10 hours/day * 100% = 168%.\n\n\nThis answer is greater than 100% because the worker needs to work more than a full day each day to clean all the floors in 10 days.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path": [
+                {
+                    "step_id": 1,
+                    "variable": "total_cleaning_time_minutes",
+                    "operation": "multiplication",
+                    "dependencies": [],
+                    "expression": "number_of_floors * cleaning_time_per_floor"
+                },
+                {
+                    "step_id": 2,
+                    "variable": "total_cleaning_time_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        1
+                    ],
+                    "expression": "total_cleaning_time_minutes / 60"
+                },
+                {
+                    "step_id": 3,
+                    "variable": "average_cleaning_time_per_day_hours",
+                    "operation": "division",
+                    "dependencies": [
+                        2
+                    ],
+                    "expression": "total_cleaning_time_hours / number_of_days"
+                },
+                {
+                    "step_id": 4,
+                    "variable": "percentage_cleaning",
+                    "operation": "multiplication",
+                    "dependencies": [
+                        3
+                    ],
+                    "expression": "average_cleaning_time_per_day_hours / work_hours_per_day * 100"
+                },
+                {
+                    "step_id": 5,
+                    "variable": "answer",
+                    "operation": "assignment",
+                    "dependencies": [
+                        4
+                    ],
+                    "expression": "percentage_cleaning"
+                }
+            ]
+        }
+    ]
+}
