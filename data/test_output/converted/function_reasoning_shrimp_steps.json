@@ -1,0 +1,1497 @@
+{
+    "config": {
+        "question": "Camila can peel 5 shrimps a minute and saute 30 shrimps in 7 minutes. How long will it take her to peel and saute 90 shrimps?",
+        "reasoning_process": "Let's think step by step. Camila can peel 5 shrimps a minute, so to peel 90 shrimps, it will take her 90 / 5 = 18 minutes. She can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. So in total, it will take her 18 + 21 = 39 minutes to peel and saute 90 shrimps. The answer is 39. #### 39",
+        "model_provider": "deepseek",
+        "sampling_model_id": "gemma_9B_it",
+        "n_samples": 20
+    },
+    "templatized_question": "Camila can peel {shrimps_peeled_per_minute} shrimps a minute and saute {shrimps_sauteed} shrimps in {saute_time} minutes. How long will it take her to peel and saute {total_shrimps} shrimps?",
+    "factual_assignment": {
+        "shrimps_peeled_per_minute": 5,
+        "shrimps_sauteed": 30,
+        "saute_time": 7,
+        "total_shrimps": 90
+    },
+    "ground_truth_function": {
+        "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+        "reasoning_path_topological_levels": [
+            [
+                0,
+                [
+                    {
+                        "step_id": 1,
+                        "variable": "peeling_time",
+                        "dependencies": [],
+                        "expression": "total_shrimps / shrimps_peeled_per_minute",
+                        "dependencies_input": [
+                            "shrimps_peeled_per_minute",
+                            "total_shrimps"
+                        ]
+                    },
+                    {
+                        "step_id": 2,
+                        "variable": "sauteing_time",
+                        "dependencies": [],
+                        "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                        "dependencies_input": [
+                            "saute_time",
+                            "shrimps_sauteed",
+                            "total_shrimps"
+                        ]
+                    }
+                ]
+            ],
+            [
+                1,
+                [
+                    {
+                        "step_id": 3,
+                        "variable": "total_time",
+                        "dependencies": [
+                            1,
+                            2
+                        ],
+                        "expression": "peeling_time + sauteing_time",
+                        "dependencies_input": []
+                    }
+                ]
+            ]
+        ]
+    },
+    "results": [
+        {
+            "sample_id": 1,
+            "added": true,
+            "sample": "Let's think step by step.\n\nFirst, we need to find out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps.\n\nThen, we need to find out how many shrimps she needs to peel to have a total of 90 shrimps: 90 shrimps - 35 shrimps = 55 shrimps.\n\nFinally, we need to find out how long it will take her to peel 55 shrimps: 55 shrimps / 5 shrimps/minute = 11 minutes.\n\nSo, it will take Camila 11 minutes to peel the shrimps and 7 minutes to saute them, for a total of 11 + 7 = 18 minutes. \n\nThe answer is 18. #### 18",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    shrimps_peeled_in_saute_time = shrimps_peeled_per_minute * saute_time\n    shrimps_to_peel = total_shrimps - shrimps_peeled_in_saute_time\n    peeling_time = shrimps_to_peel / shrimps_peeled_per_minute\n    total_time = peeling_time + saute_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step.\n\nFirst, we need to find out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps.\n\nThen, we need to find out how many shrimps she needs to peel to have a total of 90 shrimps: 90 shrimps - 35 shrimps = 55 shrimps.\n\nFinally, we need to find out how long it will take her to peel 55 shrimps: 55 shrimps / 5 shrimps/minute = 11 minutes.\n\nSo, it will take Camila 11 minutes to peel the shrimps and 7 minutes to saute them, for a total of 11 + 7 = 18 minutes. \n\nThe answer is 18. #### 18",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "shrimps_peeled_in_saute_time",
+                            "dependencies": [],
+                            "expression": "shrimps_peeled_per_minute * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 2,
+                            "variable": "shrimps_to_peel",
+                            "dependencies": [
+                                1
+                            ],
+                            "expression": "total_shrimps - shrimps_peeled_in_saute_time",
+                            "dependencies_input": [
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "peeling_time",
+                            "dependencies": [
+                                2
+                            ],
+                            "expression": "shrimps_to_peel / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    3,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "total_time",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "peeling_time + saute_time",
+                            "dependencies_input": [
+                                "saute_time"
+                            ]
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 2,
+            "added": true,
+            "sample": "Let's think step by step.\n\nFirst, find out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps.\n\nThen, find out how many shrimps Camila needs to peel after sauteing the 30: 90 shrimps - 30 shrimps = 60 shrimps.\n\nNow, find out how long it takes to peel 60 shrimps: 60 shrimps / 5 shrimps/minute = 12 minutes.\n\nFinally, add the time to peel and saute: 12 minutes + 7 minutes = 19 minutes.\n\nThe answer is 19. #### 19",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    shrimps_peeled_in_saute_time = shrimps_peeled_per_minute * saute_time\n    shrimps_to_peel_after_saute = total_shrimps - shrimps_sauteed\n    peeling_time_after_saute = shrimps_to_peel_after_saute / shrimps_peeled_per_minute\n    total_time = peeling_time_after_saute + saute_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step.\n\nFirst, find out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps.\n\nThen, find out how many shrimps Camila needs to peel after sauteing the 30: 90 shrimps - 30 shrimps = 60 shrimps.\n\nNow, find out how long it takes to peel 60 shrimps: 60 shrimps / 5 shrimps/minute = 12 minutes.\n\nFinally, add the time to peel and saute: 12 minutes + 7 minutes = 19 minutes.\n\nThe answer is 19. #### 19",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "shrimps_to_peel_after_saute",
+                            "dependencies": [],
+                            "expression": "total_shrimps - shrimps_sauteed",
+                            "dependencies_input": [
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 2,
+                            "variable": "peeling_time_after_saute",
+                            "dependencies": [
+                                1
+                            ],
+                            "expression": "shrimps_to_peel_after_saute / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "total_time",
+                            "dependencies": [
+                                2
+                            ],
+                            "expression": "peeling_time_after_saute + saute_time",
+                            "dependencies_input": [
+                                "saute_time"
+                            ]
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 3,
+            "added": false,
+            "sample": "Let's think step by step.\n\n* **Peeling:** \n    * Camila needs to peel 90 shrimps.\n    * She peels 5 shrimps per minute.\n    * It will take her 90 / 5 = 18 minutes to peel.\n\n* **Saut\u00e9ing:**\n    * Camila sautees 30 shrimps in 7 minutes.\n    * She needs to saute 90 shrimps.\n    * It will take her (90 / 30) * 7 = 21 minutes to saute.\n\n* **Total Time:**\n    * It takes 18 minutes to peel + 21 minutes to saute = 39 minutes in total.\n\n\nThe answer is 39. #### 39",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. Camila can peel 5 shrimps a minute, so to peel 90 shrimps, it will take her 90 / 5 = 18 minutes. She can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. So in total, it will take her 18 + 21 = 39 minutes to peel and saute 90 shrimps. The answer is 39. #### 39",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeling_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute",
+                                "total_shrimps"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "sauteing_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "total_time",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "peeling_time + sauteing_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 4,
+            "added": false,
+            "sample": "Let's think step by step.  First, we need to figure out how many shrimps Camila can peel in the same time it takes her to saute 30. Since she saute's 30 shrimps in 7 minutes, we know she can peel 5 * 7 = 35 shrimps in that time. So she can peel 35 shrimps before she's ready to saute them. Now she needs to peel 90 - 35 = 55 more shrimps. That will take her 55 / 5 = 11 minutes.  Then she needs to saute the 30 shrimps which takes 7 minutes. So the total time is 11 + 7 = 18 minutes. The answer is 18. #### 18",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    shrimps_peeled_in_saute_time = shrimps_peeled_per_minute * saute_time\n    shrimps_to_peel = total_shrimps - shrimps_peeled_in_saute_time\n    peeling_time = shrimps_to_peel / shrimps_peeled_per_minute\n    total_time = peeling_time + saute_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step.\n\nFirst, we need to find out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps.\n\nThen, we need to find out how many shrimps she needs to peel to have a total of 90 shrimps: 90 shrimps - 35 shrimps = 55 shrimps.\n\nFinally, we need to find out how long it will take her to peel 55 shrimps: 55 shrimps / 5 shrimps/minute = 11 minutes.\n\nSo, it will take Camila 11 minutes to peel the shrimps and 7 minutes to saute them, for a total of 11 + 7 = 18 minutes. \n\nThe answer is 18. #### 18",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "shrimps_peeled_in_saute_time",
+                            "dependencies": [],
+                            "expression": "shrimps_peeled_per_minute * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 2,
+                            "variable": "shrimps_to_peel",
+                            "dependencies": [
+                                1
+                            ],
+                            "expression": "total_shrimps - shrimps_peeled_in_saute_time",
+                            "dependencies_input": [
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "peeling_time",
+                            "dependencies": [
+                                2
+                            ],
+                            "expression": "shrimps_to_peel / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    3,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "total_time",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "peeling_time + saute_time",
+                            "dependencies_input": [
+                                "saute_time"
+                            ]
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 5,
+            "added": true,
+            "sample": "Let's think step by step.  First, we need to figure out how many shrimps she can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps. Now we know she can peel 35 shrimps and saute 30 in 7 minutes. So in total, she can prepare 35 + 30 = 65 shrimps in 7 minutes. She needs to prepare 90 shrimps, so she needs to do another 90 - 65 = 25 shrimps. Since she can peel 5 shrimps a minute, it will take her 25 shrimps / 5 shrimps/minute = 5 minutes to peel the remaining shrimps. It will take her a total of 7 minutes + 5 minutes = 12 minutes to prepare all 90 shrimps. The answer is 12. #### 12",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeled_in_saute_time = shrimps_peeled_per_minute * saute_time\n    total_prepared_in_saute_time = peeled_in_saute_time + shrimps_sauteed\n    remaining_shrimps = total_shrimps - total_prepared_in_saute_time\n    peeling_time_remaining = remaining_shrimps / shrimps_peeled_per_minute\n    total_time = saute_time + peeling_time_remaining\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step.  First, we need to figure out how many shrimps she can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps. Now we know she can peel 35 shrimps and saute 30 in 7 minutes. So in total, she can prepare 35 + 30 = 65 shrimps in 7 minutes. She needs to prepare 90 shrimps, so she needs to do another 90 - 65 = 25 shrimps. Since she can peel 5 shrimps a minute, it will take her 25 shrimps / 5 shrimps/minute = 5 minutes to peel the remaining shrimps. It will take her a total of 7 minutes + 5 minutes = 12 minutes to prepare all 90 shrimps. The answer is 12. #### 12",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeled_in_saute_time",
+                            "dependencies": [],
+                            "expression": "shrimps_peeled_per_minute * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 2,
+                            "variable": "total_prepared_in_saute_time",
+                            "dependencies": [
+                                1
+                            ],
+                            "expression": "peeled_in_saute_time + shrimps_sauteed",
+                            "dependencies_input": [
+                                "shrimps_sauteed"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "remaining_shrimps",
+                            "dependencies": [
+                                2
+                            ],
+                            "expression": "total_shrimps - total_prepared_in_saute_time",
+                            "dependencies_input": [
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    3,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "peeling_time_remaining",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "remaining_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    4,
+                    [
+                        {
+                            "step_id": 5,
+                            "variable": "total_time",
+                            "dependencies": [
+                                4
+                            ],
+                            "expression": "saute_time + peeling_time_remaining",
+                            "dependencies_input": [
+                                "saute_time"
+                            ]
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 6,
+            "added": false,
+            "sample": "Let's think step by step. To find the total time, we need to figure out how long it takes to peel 90 shrimps and how long it takes to saute 90 shrimps, then add those times together.\n\n* **Peeling:** Camila peels 5 shrimps per minute, so it will take her 90 shrimps / 5 shrimps/minute = 18 minutes to peel all the shrimps.\n\n* **Saut\u00e9ing:**  Camila can saute 30 shrimps in 7 minutes, so it will take her 90 shrimps / 30 shrimps/7 minutes = 21 minutes to saute all the shrimps.\n\n* **Total time:** It will take her 18 minutes + 21 minutes = 39 minutes to peel and saute all 90 shrimps.\n\n\nThe answer is 39. #### 39",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. Camila can peel 5 shrimps a minute, so to peel 90 shrimps, it will take her 90 / 5 = 18 minutes. She can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. So in total, it will take her 18 + 21 = 39 minutes to peel and saute 90 shrimps. The answer is 39. #### 39",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeling_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute",
+                                "total_shrimps"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "sauteing_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "total_time",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "peeling_time + sauteing_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 7,
+            "added": false,
+            "sample": "Let's think step by step. \n\nFirst, we need to figure out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps.\n\nNext, we need to figure out how many shrimps she needs to peel to reach 90: 90 shrimps - 35 shrimps = 55 shrimps.\n\nFinally, we need to figure out how long it will take her to peel 55 shrimps: 55 shrimps / 5 shrimps/minute = 11 minutes.\n\n\nSo, it will take her 11 minutes to peel the remaining shrimps.  Then, it will take 7 minutes to saute the shrimps. 11 minutes + 7 minutes = 18 minutes.\n\n\nThe answer is 18. #### 18",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    shrimps_peeled_in_saute_time = shrimps_peeled_per_minute * saute_time\n    shrimps_to_peel = total_shrimps - shrimps_peeled_in_saute_time\n    peeling_time = shrimps_to_peel / shrimps_peeled_per_minute\n    total_time = peeling_time + saute_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step.\n\nFirst, we need to find out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps.\n\nThen, we need to find out how many shrimps she needs to peel to have a total of 90 shrimps: 90 shrimps - 35 shrimps = 55 shrimps.\n\nFinally, we need to find out how long it will take her to peel 55 shrimps: 55 shrimps / 5 shrimps/minute = 11 minutes.\n\nSo, it will take Camila 11 minutes to peel the shrimps and 7 minutes to saute them, for a total of 11 + 7 = 18 minutes. \n\nThe answer is 18. #### 18",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "shrimps_peeled_in_saute_time",
+                            "dependencies": [],
+                            "expression": "shrimps_peeled_per_minute * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 2,
+                            "variable": "shrimps_to_peel",
+                            "dependencies": [
+                                1
+                            ],
+                            "expression": "total_shrimps - shrimps_peeled_in_saute_time",
+                            "dependencies_input": [
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "peeling_time",
+                            "dependencies": [
+                                2
+                            ],
+                            "expression": "shrimps_to_peel / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    3,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "total_time",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "peeling_time + saute_time",
+                            "dependencies_input": [
+                                "saute_time"
+                            ]
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 8,
+            "added": false,
+            "sample": "Let's think step by step. Camila peels 5 shrimps a minute. To peel 90 shrimps, it will take her 90 / 5 = 18 minutes. Camila sautees 30 shrimps in 7 minutes. So for 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. The total time is 18 + 21 = 39 minutes. The answer is 39. #### 39",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. Camila can peel 5 shrimps a minute, so to peel 90 shrimps, it will take her 90 / 5 = 18 minutes. She can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. So in total, it will take her 18 + 21 = 39 minutes to peel and saute 90 shrimps. The answer is 39. #### 39",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeling_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute",
+                                "total_shrimps"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "sauteing_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "total_time",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "peeling_time + sauteing_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 9,
+            "added": false,
+            "sample": "Let's think step by step. First, we need to figure out how long it takes Camila to peel 90 shrimps. Since she peels 5 shrimps a minute, it will take her 90 / 5 = 18 minutes. Next, we know she can saute 30 shrimps in 7 minutes, so we need to figure out how many times she needs to saute the shrimps. 90 shrimps / 30 shrimps per saute = 3 times. Therefore, it will take her 3 times * 7 minutes per saute = 21 minutes to saute all the shrimps. Finally, to find the total time, we add the peeling time and the sauteing time: 18 minutes + 21 minutes = 39 minutes. The answer is 39. #### 39",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. Camila can peel 5 shrimps a minute, so to peel 90 shrimps, it will take her 90 / 5 = 18 minutes. She can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. So in total, it will take her 18 + 21 = 39 minutes to peel and saute 90 shrimps. The answer is 39. #### 39",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeling_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute",
+                                "total_shrimps"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "sauteing_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "total_time",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "peeling_time + sauteing_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 10,
+            "added": false,
+            "sample": "Let's think step by step.  First, let's figure out how many shrimps Camila can saute in one minute: 30 shrimps / 7 minutes = 4.29 shrimps per minute (approximately). Now, let's figure out the total time to peel 90 shrimps: 90 shrimps / 5 shrimps per minute = 18 minutes.  Next, let's figure out the time to saute 90 shrimps: 90 shrimps / 4.29 shrimps per minute = 21 minutes (approximately). Finally, add the peeling and sauteing times: 18 minutes + 21 minutes = 39 minutes. The answer is 39. #### 39",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. Camila can peel 5 shrimps a minute, so to peel 90 shrimps, it will take her 90 / 5 = 18 minutes. She can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. So in total, it will take her 18 + 21 = 39 minutes to peel and saute 90 shrimps. The answer is 39. #### 39",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeling_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute",
+                                "total_shrimps"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "sauteing_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "total_time",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "peeling_time + sauteing_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 11,
+            "added": false,
+            "sample": "Let's think step by step.  \n\nFirst, figure out how many shrimps Camila can saute in a minute: 30 shrimps / 7 minutes = 4.29 shrimps per minute (approximately).\n\nThen, figure out the time to peel 90 shrimps: 90 shrimps / 5 shrimps per minute = 18 minutes.\n\nFinally, figure out the time to saute 90 shrimps: 90 shrimps / 4.29 shrimps per minute = 21 minutes (approximately).\n\nIn total, it will take Camila 18 minutes + 21 minutes = 39 minutes to peel and saute 90 shrimps. \n\nThe answer is 39.",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. Camila can peel 5 shrimps a minute, so to peel 90 shrimps, it will take her 90 / 5 = 18 minutes. She can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. So in total, it will take her 18 + 21 = 39 minutes to peel and saute 90 shrimps. The answer is 39. #### 39",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeling_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute",
+                                "total_shrimps"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "sauteing_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "total_time",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "peeling_time + sauteing_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 12,
+            "added": false,
+            "sample": "Let's think step by step. Camila can peel 5 shrimps a minute, so for 90 shrimps, it will take her 90 / 5 = 18 minutes. \n\n\nShe can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes.\n\n\nIn total, it will take her 18 + 21 = 39 minutes. The answer is 39. #### 39",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. Camila can peel 5 shrimps a minute, so to peel 90 shrimps, it will take her 90 / 5 = 18 minutes. She can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. So in total, it will take her 18 + 21 = 39 minutes to peel and saute 90 shrimps. The answer is 39. #### 39",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeling_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute",
+                                "total_shrimps"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "sauteing_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "total_time",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "peeling_time + sauteing_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 13,
+            "added": false,
+            "sample": "Let's think step by step. First, we need to figure out how many shrimps Camila can saute per minute: 30 shrimps / 7 minutes = 4.29 shrimps per minute (approximately).  \n\nThen we need to figure out how long it will take her to peel 90 shrimps: 90 shrimps / 5 shrimps per minute = 18 minutes.\n\nFinally, we need to figure out how long it will take her to saute 90 shrimps: 90 shrimps / 4.29 shrimps per minute = 21 minutes (approximately).\n\nTherefore, it will take Camila 18 minutes to peel the shrimps and 21 minutes to saute them. In total, it will take her approximately 18 + 21 = 39 minutes.\n\nThe answer is 39. #### 39",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. Camila can peel 5 shrimps a minute, so to peel 90 shrimps, it will take her 90 / 5 = 18 minutes. She can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. So in total, it will take her 18 + 21 = 39 minutes to peel and saute 90 shrimps. The answer is 39. #### 39",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeling_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute",
+                                "total_shrimps"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "sauteing_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "total_time",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "peeling_time + sauteing_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 14,
+            "added": true,
+            "sample": "Let's think step by step.\n\n**Peeling:** \n\n* To peel 90 shrimps at a rate of 5 per minute, it will take 90 / 5 = 18 minutes.\n\n**Sauteing:**\n\n* She can saute 30 shrimps in 7 minutes.\n\n**Total Time:**\n\n*  It takes 18 minutes to peel and 7 minutes to saute, so the total time is 18 + 7 = 25 minutes.\n\n\n\nThe answer is 25. #### 25",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step.\n\n**Peeling:** \n\n* To peel 90 shrimps at a rate of 5 per minute, it will take 90 / 5 = 18 minutes.\n\n**Sauteing:**\n\n* She can saute 30 shrimps in 7 minutes.\n\n**Total Time:**\n\n*  It takes 18 minutes to peel and 7 minutes to saute, so the total time is 18 + 7 = 25 minutes.\n\n\n\nThe answer is 25. #### 25",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeling_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 2,
+                            "variable": "total_time",
+                            "dependencies": [
+                                1
+                            ],
+                            "expression": "peeling_time + sauteing_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 15,
+            "added": true,
+            "sample": "Let's think step by step.  First, let's figure out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps.  Now, she needs to saute 90 shrimps total, and she can saute 30 in 7 minutes. So she'll need 90 / 30 = 3 sets of 7 minutes for sauteing. That's 3 * 7 = 21 minutes.  Since she already peeled 35 shrimps, she only needs to peel 90 - 35 = 55 more shrimps.  It will take her 55 / 5 = 11 minutes to peel the remaining shrimps.  The total time is 21 minutes (sauteing) + 11 minutes (peeling) = 32 minutes.  The answer is 32.  #### 32",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    shrimps_peeled_in_saute_time = shrimps_peeled_per_minute * saute_time\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    remaining_shrimps_to_peel = total_shrimps - shrimps_peeled_in_saute_time\n    peeling_time = remaining_shrimps_to_peel / shrimps_peeled_per_minute\n    total_time = sauteing_time + peeling_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step.  First, let's figure out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps.  Now, she needs to saute 90 shrimps total, and she can saute 30 in 7 minutes. So she'll need 90 / 30 = 3 sets of 7 minutes for sauteing. That's 3 * 7 = 21 minutes.  Since she already peeled 35 shrimps, she only needs to peel 90 - 35 = 55 more shrimps.  It will take her 55 / 5 = 11 minutes to peel the remaining shrimps.  The total time is 21 minutes (sauteing) + 11 minutes (peeling) = 32 minutes.  The answer is 32.  #### 32",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "shrimps_peeled_in_saute_time",
+                            "dependencies": [],
+                            "expression": "shrimps_peeled_per_minute * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_peeled_per_minute"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "sauteing_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "remaining_shrimps_to_peel",
+                            "dependencies": [
+                                1
+                            ],
+                            "expression": "total_shrimps - shrimps_peeled_in_saute_time",
+                            "dependencies_input": [
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "peeling_time",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "remaining_shrimps_to_peel / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    3,
+                    [
+                        {
+                            "step_id": 5,
+                            "variable": "total_time",
+                            "dependencies": [
+                                2,
+                                4
+                            ],
+                            "expression": "sauteing_time + peeling_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 16,
+            "added": false,
+            "sample": "Let's think step by step. First, we need to find out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps. Then we need to find out how many shrimps she needs to peel to have 90 shrimps in total: 90 shrimps - 35 shrimps = 55 shrimps. Now we need to find out how long it will take her to peel 55 shrimps: 55 shrimps / 5 shrimps/minute = 11 minutes. Finally, we need to add the time it takes to saute the shrimps: 11 minutes + 7 minutes = 18 minutes. The answer is 18. #### 18",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    shrimps_peeled_in_saute_time = shrimps_peeled_per_minute * saute_time\n    shrimps_to_peel = total_shrimps - shrimps_peeled_in_saute_time\n    peeling_time = shrimps_to_peel / shrimps_peeled_per_minute\n    total_time = peeling_time + saute_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step.\n\nFirst, we need to find out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps.\n\nThen, we need to find out how many shrimps she needs to peel to have a total of 90 shrimps: 90 shrimps - 35 shrimps = 55 shrimps.\n\nFinally, we need to find out how long it will take her to peel 55 shrimps: 55 shrimps / 5 shrimps/minute = 11 minutes.\n\nSo, it will take Camila 11 minutes to peel the shrimps and 7 minutes to saute them, for a total of 11 + 7 = 18 minutes. \n\nThe answer is 18. #### 18",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "shrimps_peeled_in_saute_time",
+                            "dependencies": [],
+                            "expression": "shrimps_peeled_per_minute * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 2,
+                            "variable": "shrimps_to_peel",
+                            "dependencies": [
+                                1
+                            ],
+                            "expression": "total_shrimps - shrimps_peeled_in_saute_time",
+                            "dependencies_input": [
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "peeling_time",
+                            "dependencies": [
+                                2
+                            ],
+                            "expression": "shrimps_to_peel / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    3,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "total_time",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "peeling_time + saute_time",
+                            "dependencies_input": [
+                                "saute_time"
+                            ]
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 17,
+            "added": true,
+            "sample": "Let's think step by step. To find the total time, we need to figure out the time for peeling and sauteing separately.\n\nFirst, let's calculate the time to peel 90 shrimps: 90 shrimps / 5 shrimps/minute = 18 minutes.\n\nNext, let's calculate the time to saute 90 shrimps: 90 shrimps / 30 shrimps/7 minutes = 2.1 * 7 minutes = 14.7 minutes.\n\nFinally, add the time for peeling and sauteing: 18 minutes + 14.7 minutes = 32.7 minutes.\n\nThe answer is 32.7 minutes. #### 32.7",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. To find the total time, we need to figure out the time for peeling and sauteing separately.\n\nFirst, let's calculate the time to peel 90 shrimps: 90 shrimps / 5 shrimps/minute = 18 minutes.\n\nNext, let's calculate the time to saute 90 shrimps: 90 shrimps / 30 shrimps/7 minutes = 2.1 * 7 minutes = 14.7 minutes.\n\nFinally, add the time for peeling and sauteing: 18 minutes + 14.7 minutes = 32.7 minutes.\n\nThe answer is 32.7 minutes. #### 32.7",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeling_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute",
+                                "total_shrimps"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "sauteing_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "total_time",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "peeling_time + sauteing_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 18,
+            "added": true,
+            "sample": "Let's think step by step. First, we need to find out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps. Now we know she can peel 35 shrimps and saute 30 shrimps in 7 minutes, so she can handle 35 + 30 = 65 shrimps in 7 minutes. To handle 90 shrimps, she will need to repeat this process 90 / 65 = 1.38 times. Since we can't have parts of processes, it will take her 2 * 7 minutes = 14 minutes. The answer is 14. #### 14",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    shrimps_peeled_in_saute_time = shrimps_peeled_per_minute * saute_time\n    total_shrimps_per_cycle = shrimps_peeled_in_saute_time + shrimps_sauteed\n    cycles_needed = total_shrimps / total_shrimps_per_cycle\n    total_time = (cycles_needed if cycles_needed == int(cycles_needed) else int(cycles_needed) + 1) * saute_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. First, we need to find out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps. Now we know she can peel 35 shrimps and saute 30 shrimps in 7 minutes, so she can handle 35 + 30 = 65 shrimps in 7 minutes. To handle 90 shrimps, she will need to repeat this process 90 / 65 = 1.38 times. Since we can't have parts of processes, it will take her 2 * 7 minutes = 14 minutes. The answer is 14. #### 14",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "shrimps_peeled_in_saute_time",
+                            "dependencies": [],
+                            "expression": "shrimps_peeled_per_minute * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 2,
+                            "variable": "total_shrimps_per_cycle",
+                            "dependencies": [
+                                1
+                            ],
+                            "expression": "shrimps_peeled_in_saute_time + shrimps_sauteed",
+                            "dependencies_input": [
+                                "shrimps_sauteed"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "cycles_needed",
+                            "dependencies": [
+                                2
+                            ],
+                            "expression": "total_shrimps / total_shrimps_per_cycle",
+                            "dependencies_input": [
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    3,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "total_time",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "(cycles_needed if cycles_needed == int(cycles_needed) else int(cycles_needed) + 1) * saute_time",
+                            "dependencies_input": [
+                                "saute_time"
+                            ]
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 19,
+            "added": true,
+            "sample": "Let's think step by step. First, we need to figure out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps. Now we know she can peel 35 shrimps and saute 30, for a total of 35 + 30 = 65 shrimps in 7 minutes. She needs to cook 90 shrimps, so she needs to repeat the process: (90 - 65) / 65 = 0.46 times. So, it will take her 7 minutes * 0.46 = 3.22 minutes more. In total, it will take her 7 minutes + 3.22 minutes = 10.22 minutes. The answer is 10.22. #### 10.22",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeled_in_saute_time = shrimps_peeled_per_minute * saute_time\n    total_in_saute_time = peeled_in_saute_time + shrimps_sauteed\n    remaining_shrimps = total_shrimps - total_in_saute_time\n    additional_time = (remaining_shrimps / total_in_saute_time) * saute_time\n    total_time = saute_time + additional_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. First, we need to figure out how many shrimps Camila can peel in 7 minutes: 5 shrimps/minute * 7 minutes = 35 shrimps. Now we know she can peel 35 shrimps and saute 30, for a total of 35 + 30 = 65 shrimps in 7 minutes. She needs to cook 90 shrimps, so she needs to repeat the process: (90 - 65) / 65 = 0.46 times. So, it will take her 7 minutes * 0.46 = 3.22 minutes more. In total, it will take her 7 minutes + 3.22 minutes = 10.22 minutes. The answer is 10.22. #### 10.22",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeled_in_saute_time",
+                            "dependencies": [],
+                            "expression": "shrimps_peeled_per_minute * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_peeled_per_minute"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 2,
+                            "variable": "total_in_saute_time",
+                            "dependencies": [
+                                1
+                            ],
+                            "expression": "peeled_in_saute_time + shrimps_sauteed",
+                            "dependencies_input": [
+                                "shrimps_sauteed"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "remaining_shrimps",
+                            "dependencies": [
+                                2
+                            ],
+                            "expression": "total_shrimps - total_in_saute_time",
+                            "dependencies_input": [
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    3,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "additional_time",
+                            "dependencies": [
+                                2,
+                                3
+                            ],
+                            "expression": "remaining_shrimps / total_in_saute_time * saute_time",
+                            "dependencies_input": [
+                                "saute_time"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    4,
+                    [
+                        {
+                            "step_id": 5,
+                            "variable": "total_time",
+                            "dependencies": [
+                                4
+                            ],
+                            "expression": "saute_time + additional_time",
+                            "dependencies_input": [
+                                "saute_time"
+                            ]
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 20,
+            "added": false,
+            "sample": "Let's think step by step. First, we need to find out how long it takes Camila to peel 90 shrimps: 90 shrimps / 5 shrimps/minute = 18 minutes.  Next, we know it takes her 7 minutes to saute 30 shrimps, so for 90 shrimps, it would take her 7 minutes * 3 = 21 minutes.  Finally, we add the time to peel and saute: 18 minutes + 21 minutes = 39 minutes. The answer is 39. #### 39",
+            "function": {
+                "function_str": "def solution(shrimps_peeled_per_minute, shrimps_sauteed, saute_time, total_shrimps):\n    peeling_time = total_shrimps / shrimps_peeled_per_minute\n    sauteing_time = (total_shrimps / shrimps_sauteed) * saute_time\n    total_time = peeling_time + sauteing_time\n    return total_time",
+                "source": {
+                    "factual_assignment": {
+                        "shrimps_peeled_per_minute": 5,
+                        "shrimps_sauteed": 30,
+                        "saute_time": 7,
+                        "total_shrimps": 90
+                    },
+                    "reasoning_process": "Let's think step by step. Camila can peel 5 shrimps a minute, so to peel 90 shrimps, it will take her 90 / 5 = 18 minutes. She can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. So in total, it will take her 18 + 21 = 39 minutes to peel and saute 90 shrimps. The answer is 39. #### 39",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "peeling_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_peeled_per_minute",
+                            "dependencies_input": [
+                                "shrimps_peeled_per_minute",
+                                "total_shrimps"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "sauteing_time",
+                            "dependencies": [],
+                            "expression": "total_shrimps / shrimps_sauteed * saute_time",
+                            "dependencies_input": [
+                                "saute_time",
+                                "shrimps_sauteed",
+                                "total_shrimps"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "total_time",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "peeling_time + sauteing_time",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        }
+    ]
+}

@@ -1,9 +1,5 @@
-pytest==7.4.0
-pytest-cov==4.1.0
-flask==2.0.1
-tiktoken==0.5.1
 openai==1.12.0
 google-generativeai==0.3.2
-jquery==3.6.0
-datatables==1.10.24
-jquery-resizable-columns==0.2.3 
+graphviz
+streamlit
+streamlit-agraph

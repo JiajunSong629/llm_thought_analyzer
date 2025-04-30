@@ -1,0 +1,1313 @@
+{
+    "config": {
+        "question": "James is rolling a d20 die. How much more likely is it (expressed as a percentage) that he rolls a number greater than 4 than that he rolls two even numbers in a row?",
+        "reasoning_process": "Let's think step by step. The probability of rolling a number greater than 4 is 16 / 20 = 0.8. The probability of rolling two even numbers in a row is 10 / 20 * 10 / 20 = 0.25. The difference is 0.8 - 0.25 = 0.55. To express this as a percentage, we multiply by 100, so the answer is 55%. #### 55",
+        "model_provider": "deepseek",
+        "sampling_model_id": "gemma_9B_it",
+        "n_samples": 20
+    },
+    "templatized_question": "James is rolling a d{die_sides} die. How much more likely is it (expressed as a percentage) that he rolls a number greater than {threshold} than that he rolls two even numbers in a row?",
+    "factual_assignment": {
+        "die_sides": 20,
+        "threshold": 4
+    },
+    "ground_truth_function": {
+        "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+        "reasoning_path_topological_levels": [
+            [
+                0,
+                [
+                    {
+                        "step_id": 1,
+                        "variable": "probability_greater_than_threshold",
+                        "dependencies": [],
+                        "expression": "(die_sides - threshold) / die_sides",
+                        "dependencies_input": [
+                            "die_sides",
+                            "threshold"
+                        ]
+                    },
+                    {
+                        "step_id": 2,
+                        "variable": "probability_two_even_numbers",
+                        "dependencies": [],
+                        "expression": "die_sides // 2 / die_sides * (die_sides // 2 / die_sides)",
+                        "dependencies_input": [
+                            "die_sides"
+                        ]
+                    }
+                ]
+            ],
+            [
+                1,
+                [
+                    {
+                        "step_id": 3,
+                        "variable": "difference",
+                        "dependencies": [
+                            1,
+                            2
+                        ],
+                        "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                        "dependencies_input": []
+                    }
+                ]
+            ],
+            [
+                2,
+                [
+                    {
+                        "step_id": 4,
+                        "variable": "answer",
+                        "dependencies": [
+                            3
+                        ],
+                        "expression": "difference * 100",
+                        "dependencies_input": []
+                    }
+                ]
+            ]
+        ]
+    },
+    "results": [
+        {
+            "sample_id": 1,
+            "added": false,
+            "sample": "Let's think step by step. There are 16 numbers greater than 4 on a d20. The probability of rolling a number greater than 4 is 16/20 = 0.8 or 80%.  \nTo roll two even numbers in a row, the first roll must be even (10 possibilities), and the second must also be even (10 possibilities).  The probability of this is (10/20) * (10/20) = 0.25 or 25%.  \nThe difference in probability is 80% - 25% = 55%.  \n\nThe answer is 55%.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step. The probability of rolling a number greater than 4 is 16 / 20 = 0.8. The probability of rolling two even numbers in a row is 10 / 20 * 10 / 20 = 0.25. The difference is 0.8 - 0.25 = 0.55. To express this as a percentage, we multiply by 100, so the answer is 55%. #### 55",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / die_sides)",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 2,
+            "added": false,
+            "sample": "Let's think step by step. \n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20. So the probability is 16/20 or 80%.\n\n* **Probability of rolling two even numbers in a row:**  \n    * There are 10 even numbers on a d20. \n    * The probability of rolling one even number is 10/20 or 50%.\n    * Since the outcome of the first roll doesn't affect the second, the probability of rolling two evens in a row is 50% * 50% = 25%.\n\n* **Difference in probability:** 80% - 25% = 55%\n\n\n\nThe answer is 55%. #### 55%",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step. The probability of rolling a number greater than 4 is 16 / 20 = 0.8. The probability of rolling two even numbers in a row is 10 / 20 * 10 / 20 = 0.25. The difference is 0.8 - 0.25 = 0.55. To express this as a percentage, we multiply by 100, so the answer is 55%. #### 55",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / die_sides)",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 3,
+            "added": true,
+            "sample": "Let's think step by step.  \n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20, and 20 total possibilities. So the probability is 16/20 = 0.8 or 80%.\n\n* **Probability of rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 = 0.5. After rolling one even number, there are still 19 possibilities left. The probability of rolling another even number is 10/19.  So the probability of rolling two evens in a row is (10/20) * (10/19) = 0.263 (approximately).\n\n* **The difference:**  80% - 26.3% = 53.7%\n\n\n\nThe answer is **53.7%**.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / (die_sides - 1))\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step.  \n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20, and 20 total possibilities. So the probability is 16/20 = 0.8 or 80%.\n\n* **Probability of rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 = 0.5. After rolling one even number, there are still 19 possibilities left. The probability of rolling another even number is 10/19.  So the probability of rolling two evens in a row is (10/20) * (10/19) = 0.263 (approximately).\n\n* **The difference:**  80% - 26.3% = 53.7%\n\n\n\nThe answer is **53.7%**.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / (die_sides - 1))",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 4,
+            "added": true,
+            "sample": "** It is 55% more likely that James rolls a number greater than 4 than that he rolls two even numbers in a row.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = 55\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "** It is 55% more likely that James rolls a number greater than 4 than that he rolls two even numbers in a row.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "answer",
+                            "dependencies": [],
+                            "expression": "55",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 5,
+            "added": false,
+            "sample": "Let's think step by step.\n\n**Probability of rolling a number greater than 4:**\n\n* There are 16 numbers greater than 4 on a d20.\n* There are 20 total possible outcomes.\n* Probability = (Favorable Outcomes) / (Total Outcomes) = 16/20 = 0.8\n\n**Probability of rolling two even numbers in a row:**\n\n*  There are 10 even numbers on a d20.\n* Probability of rolling one even number: 10/20 = 0.5\n* Probability of rolling another even number after the first: 10/20 = 0.5\n* Probability of both events happening: 0.5 * 0.5 = 0.25\n\n**Difference in Probability:**\n\n* 0.8 - 0.25 = 0.55\n\n**Percentage Difference:**\n\n* 0.55 * 100% = 55%\n\n\nThe answer is 55%. #### 55%",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step. The probability of rolling a number greater than 4 is 16 / 20 = 0.8. The probability of rolling two even numbers in a row is 10 / 20 * 10 / 20 = 0.25. The difference is 0.8 - 0.25 = 0.55. To express this as a percentage, we multiply by 100, so the answer is 55%. #### 55",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / die_sides)",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 6,
+            "added": false,
+            "sample": "Let's think step by step. \n\n* **Rolling greater than 4:** There are 16 numbers greater than 4 on a d20. The probability of rolling a number greater than 4 is 16/20 or 80%.\n\n* **Rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 or 50%.  After rolling one even number, there are still 10 even numbers left and 19 total possibilities. So, the probability of rolling another even number is 10/19. To get the probability of both events, we multiply: 50% * (10/19) \u2248 26.3%.\n\n* **The difference:** 80% - 26.3% = 53.7%\n\n\n\n\nThe answer is 53.7%.  #### 53.7%",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / (die_sides - 1))\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step.  \n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20, and 20 total possibilities. So the probability is 16/20 = 0.8 or 80%.\n\n* **Probability of rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 = 0.5. After rolling one even number, there are still 19 possibilities left. The probability of rolling another even number is 10/19.  So the probability of rolling two evens in a row is (10/20) * (10/19) = 0.263 (approximately).\n\n* **The difference:**  80% - 26.3% = 53.7%\n\n\n\nThe answer is **53.7%**.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / (die_sides - 1))",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 7,
+            "added": false,
+            "sample": "Let's think step by step.\n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20. The probability is 16/20 or 80%.\n\n* **Probability of rolling two even numbers in a row:** There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 or 50%.  The probability of rolling another even number after that is also 50%. So, the probability of rolling two even numbers in a row is 50% * 50% = 25%.\n\n* **Difference in probability:** 80% - 25% = 55%\n\n\n\nThe answer is 55%. #### 55%",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step. The probability of rolling a number greater than 4 is 16 / 20 = 0.8. The probability of rolling two even numbers in a row is 10 / 20 * 10 / 20 = 0.25. The difference is 0.8 - 0.25 = 0.55. To express this as a percentage, we multiply by 100, so the answer is 55%. #### 55",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / die_sides)",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 8,
+            "added": false,
+            "sample": "Let's think step by step.  \n\n* **Rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20. The probability of rolling one is 16/20 or 80%.\n\n* **Rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 or 50%.  After rolling one even number, there are still 10 even numbers left and 19 total possibilities. So the probability of rolling another even number is 10/19. The probability of both events happening is (10/20) * (10/19) = 50/19, which is approximately 26.3%.\n\n* **The difference:** 80% - 26.3% = 53.7% \n\n\n\nThe answer is **53.7%**.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / (die_sides - 1))\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step.  \n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20, and 20 total possibilities. So the probability is 16/20 = 0.8 or 80%.\n\n* **Probability of rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 = 0.5. After rolling one even number, there are still 19 possibilities left. The probability of rolling another even number is 10/19.  So the probability of rolling two evens in a row is (10/20) * (10/19) = 0.263 (approximately).\n\n* **The difference:**  80% - 26.3% = 53.7%\n\n\n\nThe answer is **53.7%**.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / (die_sides - 1))",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 9,
+            "added": false,
+            "sample": "Let's think step by step. \n\n* **Probability of rolling greater than 4:** There are 16 numbers greater than 4 on a d20. The probability is 16/20 or 80%.\n\n* **Probability of rolling two even numbers in a row:**  There are 10 even numbers on a d20.  The probability of rolling one even number is 10/20.  After rolling one even, there are still 10 even numbers out of 19 total. So, the probability of rolling two evens in a row is (10/20) * (10/19) = 50/190. This is approximately 26.3%.\n\n* **Difference:** The difference in probability is 80% - 26.3% = 53.7%.\n\n\n\nThe answer is 53.7%",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / (die_sides - 1))\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step.  \n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20, and 20 total possibilities. So the probability is 16/20 = 0.8 or 80%.\n\n* **Probability of rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 = 0.5. After rolling one even number, there are still 19 possibilities left. The probability of rolling another even number is 10/19.  So the probability of rolling two evens in a row is (10/20) * (10/19) = 0.263 (approximately).\n\n* **The difference:**  80% - 26.3% = 53.7%\n\n\n\nThe answer is **53.7%**.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / (die_sides - 1))",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 10,
+            "added": false,
+            "sample": "Let's think step by step. There are 16 numbers greater than 4 on a d20. So the probability of rolling a number greater than 4 is 16/20. There are 10 even numbers on a d20. The probability of rolling an even number is 10/20. The probability of rolling two even numbers in a row is (10/20) * (10/20) = 1/4.  The probability of rolling a number greater than 4 is 4/5. The difference in probability is 4/5 - 1/4 = 11/20. This is equal to 55%. The answer is 55%. #### 55%",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step. The probability of rolling a number greater than 4 is 16 / 20 = 0.8. The probability of rolling two even numbers in a row is 10 / 20 * 10 / 20 = 0.25. The difference is 0.8 - 0.25 = 0.55. To express this as a percentage, we multiply by 100, so the answer is 55%. #### 55",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / die_sides)",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 11,
+            "added": false,
+            "sample": "** It is 55% more likely to roll a number greater than 4 than to roll two even numbers in a row.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = 55\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "** It is 55% more likely that James rolls a number greater than 4 than that he rolls two even numbers in a row.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "answer",
+                            "dependencies": [],
+                            "expression": "55",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 12,
+            "added": false,
+            "sample": "Let's think step by step.\n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20. So the probability is 16/20 or 80%.\n* **Probability of rolling two even numbers in a row:**\n    * The probability of rolling an even number on the first roll is 10/20 or 50%.\n    * If the first roll is even, the probability of rolling another even number is also 10/20 or 50%.\n    * To get the probability of both events happening, we multiply: 50% * 50% = 25%.\n\n* **Difference in probability:** 80% - 25% = 55%\n\n\n\nThe answer is 55%.  #### 55%",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step. The probability of rolling a number greater than 4 is 16 / 20 = 0.8. The probability of rolling two even numbers in a row is 10 / 20 * 10 / 20 = 0.25. The difference is 0.8 - 0.25 = 0.55. To express this as a percentage, we multiply by 100, so the answer is 55%. #### 55",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / die_sides)",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 13,
+            "added": true,
+            "sample": "Let's think step by step. \n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20, and 20 total possibilities. So the probability is 16/20 or 80%.\n\n* **Probability of rolling two even numbers in a row:** There are 10 even numbers on a d20. The probability of rolling one even number is 10/20. After rolling one even number, there are 9 even numbers left and 19 total possibilities. So the probability of rolling a second even number is 9/19. To get the probability of both events happening, we multiply: (10/20) * (9/19) = 9/38.\n\n* **Difference in probability:**  80% - (9/38)%.  To compare these, convert 9/38 to a percentage.  (9/38) * 100% \u2248 23.7%.\n\n* **Final answer:** The difference in probability is 80% - 23.7% = **56.3%**.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_first_even = die_sides // 2 / die_sides\n    probability_second_even = (die_sides // 2 - 1) / (die_sides - 1)\n    probability_two_even_numbers = probability_first_even * probability_second_even\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step. \n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20, and 20 total possibilities. So the probability is 16/20 or 80%.\n\n* **Probability of rolling two even numbers in a row:** There are 10 even numbers on a d20. The probability of rolling one even number is 10/20. After rolling one even number, there are 9 even numbers left and 19 total possibilities. So the probability of rolling a second even number is 9/19. To get the probability of both events happening, we multiply: (10/20) * (9/19) = 9/38.\n\n* **Difference in probability:**  80% - (9/38)%.  To compare these, convert 9/38 to a percentage.  (9/38) * 100% \u2248 23.7%.\n\n* **Final answer:** The difference in probability is 80% - 23.7% = **56.3%**.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_first_even",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        },
+                        {
+                            "step_id": 3,
+                            "variable": "probability_second_even",
+                            "dependencies": [],
+                            "expression": "(die_sides // 2 - 1) / (die_sides - 1)",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [
+                                2,
+                                3
+                            ],
+                            "expression": "probability_first_even * probability_second_even",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 5,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                4
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    3,
+                    [
+                        {
+                            "step_id": 6,
+                            "variable": "answer",
+                            "dependencies": [
+                                5
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 14,
+            "added": true,
+            "sample": "Let's think step by step.  First, we need to figure out the probabilities of each event:\n\n* **Rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20. The probability is 16/20 or 80%.\n* **Rolling two even numbers in a row:** There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 or 50%. After rolling one even number, there are still 10 even numbers left out of 19 total. The probability of rolling another even number is 10/19.  So the probability of rolling two evens in a row is (10/20) * (10/19) = 50/19, which is approximately 26%.\n\n* **The difference in probability:** 80% - 26% = 54% \n\nThe answer is 54%.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / (die_sides - 1))\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step.  First, we need to figure out the probabilities of each event:\n\n* **Rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20. The probability is 16/20 or 80%.\n* **Rolling two even numbers in a row:** There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 or 50%. After rolling one even number, there are still 10 even numbers left out of 19 total. The probability of rolling another even number is 10/19.  So the probability of rolling two evens in a row is (10/20) * (10/19) = 50/19, which is approximately 26%.\n\n* **The difference in probability:** 80% - 26% = 54% \n\nThe answer is 54%.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / (die_sides - 1))",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 15,
+            "added": false,
+            "sample": "** It is **55%** more likely for James to roll a number greater than 4 than to roll two even numbers in a row.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = 55\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "** It is 55% more likely that James rolls a number greater than 4 than that he rolls two even numbers in a row.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "answer",
+                            "dependencies": [],
+                            "expression": "55",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 16,
+            "added": true,
+            "sample": "Let's think step by step. \n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20, and 20 total possibilities. So the probability is 16/20 or 80%.\n\n* **Probability of rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 or 50%. After rolling one even number, there are still 10 even numbers out of 19 total. So the probability of rolling another even number is 10/19.  The probability of both events happening is (10/20) * (10/19) = 50/19.\n\n* **Difference:** 80% - (50/19)%.  We need to convert 50/19 to a percentage to compare. \n\nLet me know if you'd like me to calculate the final percentage difference.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / (die_sides - 1))\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step. \n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20, and 20 total possibilities. So the probability is 16/20 or 80%.\n\n* **Probability of rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 or 50%. After rolling one even number, there are still 10 even numbers out of 19 total. So the probability of rolling another even number is 10/19.  The probability of both events happening is (10/20) * (10/19) = 50/19.\n\n* **Difference:** 80% - (50/19)%.  We need to convert 50/19 to a percentage to compare. \n\nLet me know if you'd like me to calculate the final percentage difference.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / (die_sides - 1))",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 17,
+            "added": false,
+            "sample": "** It is 55% more likely that James rolls a number greater than 4 than that he rolls two even numbers in a row.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = 55\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "** It is 55% more likely that James rolls a number greater than 4 than that he rolls two even numbers in a row.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "answer",
+                            "dependencies": [],
+                            "expression": "55",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 18,
+            "added": false,
+            "sample": "Let's think step by step. \n\n* **Rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20. The probability is 16/20 or 80%.\n\n* **Rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 or 50%. The probability of rolling another even number after that is also 10/20 or 50%.  To get the probability of both events happening, we multiply: 50% * 50% = 25%.\n\n* **The difference:** 80% - 25% = 55%\n\n\n\n\nThe answer is 55%.  #### 55%",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step. The probability of rolling a number greater than 4 is 16 / 20 = 0.8. The probability of rolling two even numbers in a row is 10 / 20 * 10 / 20 = 0.25. The difference is 0.8 - 0.25 = 0.55. To express this as a percentage, we multiply by 100, so the answer is 55%. #### 55",
+                    "function_results_match_reasoning_process": true
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / die_sides)",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 19,
+            "added": false,
+            "sample": "Let's think step by step.\n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20. The probability is 16/20 or 80%.\n\n* **Probability of rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 or 50%.  After rolling one even, there are still 10 even numbers left and 19 total. The probability of rolling another even is 10/19. So the probability of two evens in a row is (10/20) * (10/19) = 50/19 or approximately 26.3%.\n\n* **The difference in probability:** 80% - 26.3% = 53.7%\n\n\n\n\nThe answer is **53.7%**.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / (die_sides - 1))\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = difference * 100\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "Let's think step by step.  \n\n* **Probability of rolling a number greater than 4:** There are 16 numbers greater than 4 on a d20, and 20 total possibilities. So the probability is 16/20 = 0.8 or 80%.\n\n* **Probability of rolling two even numbers in a row:**  There are 10 even numbers on a d20. The probability of rolling one even number is 10/20 = 0.5. After rolling one even number, there are still 19 possibilities left. The probability of rolling another even number is 10/19.  So the probability of rolling two evens in a row is (10/20) * (10/19) = 0.263 (approximately).\n\n* **The difference:**  80% - 26.3% = 53.7%\n\n\n\nThe answer is **53.7%**.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "probability_greater_than_threshold",
+                            "dependencies": [],
+                            "expression": "(die_sides - threshold) / die_sides",
+                            "dependencies_input": [
+                                "die_sides",
+                                "threshold"
+                            ]
+                        },
+                        {
+                            "step_id": 2,
+                            "variable": "probability_two_even_numbers",
+                            "dependencies": [],
+                            "expression": "die_sides // 2 / die_sides * (die_sides // 2 / (die_sides - 1))",
+                            "dependencies_input": [
+                                "die_sides"
+                            ]
+                        }
+                    ]
+                ],
+                [
+                    1,
+                    [
+                        {
+                            "step_id": 3,
+                            "variable": "difference",
+                            "dependencies": [
+                                1,
+                                2
+                            ],
+                            "expression": "probability_greater_than_threshold - probability_two_even_numbers",
+                            "dependencies_input": []
+                        }
+                    ]
+                ],
+                [
+                    2,
+                    [
+                        {
+                            "step_id": 4,
+                            "variable": "answer",
+                            "dependencies": [
+                                3
+                            ],
+                            "expression": "difference * 100",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        },
+        {
+            "sample_id": 20,
+            "added": false,
+            "sample": "** It is 55% more likely for James to roll a number greater than 4 than to roll two even numbers in a row.",
+            "function": {
+                "function_str": "def solution(die_sides, threshold):\n    probability_greater_than_threshold = (die_sides - threshold) / die_sides\n    probability_two_even_numbers = (die_sides // 2 / die_sides) * (die_sides // 2 / die_sides)\n    difference = probability_greater_than_threshold - probability_two_even_numbers\n    answer = 55\n    return answer",
+                "source": {
+                    "factual_assignment": {
+                        "die_sides": 20,
+                        "threshold": 4
+                    },
+                    "reasoning_process": "** It is 55% more likely that James rolls a number greater than 4 than that he rolls two even numbers in a row.",
+                    "function_results_match_reasoning_process": false
+                }
+            },
+            "reasoning_path_topological_levels": [
+                [
+                    0,
+                    [
+                        {
+                            "step_id": 1,
+                            "variable": "answer",
+                            "dependencies": [],
+                            "expression": "55",
+                            "dependencies_input": []
+                        }
+                    ]
+                ]
+            ]
+        }
+    ]
+}

@@ -1,8 +1,8 @@
 [
     {
-        "sample_id": "sale",
-        "question": "Sally went to the seashore for vacation.  Her parents gave her $100 to buy whatever she wanted.  At the trinket shop, taffy was on sale for \"Buy 1 pound at $12, get 1 pound 1/2 off.\"  She scooped up 3 pounds.  She also bought a mixed bag of seashells for $1.50 and 4 magnets that were $0.25 each.  How much money does Sally have left?",
-        "reasoning_process": "Let's think step by step. Sally scooped up 3 pounds of taffy, so she gets 2 pounds at full price and 1 pound at 1/2 off. Full price of taffy cost 12 * 2 = 24 dollars. Discounted taffy costs 12 - 12 / 2 = 6 dollars. So 24 + 6 = 30 dollars for the taffy. The magnets cost 4 x 0.25 = 1 dollar. So in total she spent 30 + 1.50 + 1 = 32.50 dollars. Sally started with 100 dollars and spent 32.50 dollars, so she has 100 - 32.50 = 67.50 dollars left. The answer is 67.50. #### 67.50"
+        "sample_id": "dice",
+        "question": "James is rolling a d20 die. How much more likely is it (expressed as a percentage) that he rolls a number greater than 4 than that he rolls two even numbers in a row?",
+        "reasoning_process": "Let's think step by step. The probability of rolling a number greater than 4 is 16 / 20 = 0.8. The probability of rolling two even numbers in a row is 10 / 20 * 10 / 20 = 0.25. The difference is 0.8 - 0.25 = 0.55. To express this as a percentage, we multiply by 100, so the answer is 55%. #### 55"
     },
     {
         "sample_id": "shrimp",
@@ -10,8 +10,13 @@
         "reasoning_process": "Let's think step by step. Camila can peel 5 shrimps a minute, so to peel 90 shrimps, it will take her 90 / 5 = 18 minutes. She can saute 30 shrimps in 7 minutes, so to saute 90 shrimps, it will take her 90 / 30 * 7 = 21 minutes. So in total, it will take her 18 + 21 = 39 minutes to peel and saute 90 shrimps. The answer is 39. #### 39"
     },
     {
-        "sample_id": "dice",
-        "question": "James is rolling a d20 die. How much more likely is it (expressed as a percentage) that he rolls a number greater than 4 than that he rolls two even numbers in a row?",
-        "reasoning_process": "Let's think step by step. The probability of rolling a number greater than 4 is 16 / 20 = 0.8. The probability of rolling two even numbers in a row is 10 / 20 * 10 / 20 = 0.25. The difference is 0.8 - 0.25 = 0.55. To express this as a percentage, we multiply by 100, so the answer is 55%. #### 55"
+        "sample_id": "sale",
+        "question": "Sally went to the seashore for vacation.  Her parents gave her $100 to buy whatever she wanted.  At the trinket shop, taffy was on sale for \"Buy 1 pound at $12, get 1 pound 1/2 off.\"  She scooped up 3 pounds.  She also bought a mixed bag of seashells for $1.50 and 4 magnets that were $0.25 each.  How much money does Sally have left?",
+        "reasoning_process": "Let's think step by step. Sally scooped up 3 pounds of taffy, so she gets 2 pounds at full price and 1 pound at 1/2 off. Full price of taffy cost 12 * 2 = 24 dollars. Discounted taffy costs 12 - 12 / 2 = 6 dollars. So 24 + 6 = 30 dollars for the taffy. The magnets cost 4 x 0.25 = 1 dollar. So in total she spent 30 + 1.50 + 1 = 32.50 dollars. Sally started with 100 dollars and spent 32.50 dollars, so she has 100 - 32.50 = 67.50 dollars left. The answer is 67.50. #### 67.50"
+    },
+    {
+        "sample_id": "cleaner",
+        "question": "A maintenance worker has to clean a university with 210 floors. They have 10 days to get it done. It takes them 20 minutes per floor. If they work 10 hours each day, what percentage of their day, on average, is spent cleaning floors?",
+        "reasoning_process": "Let's think step by step. The worker has to clean 210 floors in 10 days, so they need to clean 210 / 10 = 21 floors per day. It takes them 20 minutes per floor, so they spend 20 * 21 = 420 minutes per day cleaning. So they spend 420 / 60 = 7 hours per day cleaning. They work 10 hours each day, so they spend 7 / 10 * 100 = 70% of their day cleaning. The answer is 70. #### 70"
     }
 ]
