@@ -29,9 +29,9 @@ class FunctionLogger:
         self.logger = logging.getLogger("function_reasoning")
 
         # Log the start of a new session
-        self.log_step(
-            "SESSION_START", f"Starting new logging session in {self.log_file}", "INFO"
-        )
+        # self.log_step(
+        #     "SESSION_START", f"Starting new logging session in {self.log_file}", "INFO"
+        # )
 
     def log_step(self, step_name: str, details: str, level: str = "INFO"):
         """Log a step in the function reasoning process.

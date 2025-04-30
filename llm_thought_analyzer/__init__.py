@@ -1,8 +1,8 @@
-from llm_thought_analyzer.parser import (
+from .parser import (
     ReasoningPath,
     ReasoningStep,
 )
-from llm_thought_analyzer.metaquestion import (
+from .metaquestion import (
     FunctionReasoning,
     FunctionReasoningPool,
     GroundTruthQuestionAnswer,

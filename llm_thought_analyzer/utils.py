@@ -1,7 +1,7 @@
 import json
 import time
-from llm_thought_analyzer import config
-from llm_thought_analyzer.logger import LLMLogger, FunctionLogger
+from . import config
+from .logger import LLMLogger, FunctionLogger
 
 llm_logger = LLMLogger()
 function_logger = FunctionLogger()

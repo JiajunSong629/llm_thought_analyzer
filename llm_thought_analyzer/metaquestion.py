@@ -1,8 +1,8 @@
 import json
 import re
 from typing import Any, Callable, Dict, List, Tuple, Union
-from llm_thought_analyzer.utils import call_llm
-from llm_thought_analyzer.prompt import (
+from .utils import call_llm
+from .prompt import (
     TEMPLATIZED_QUESTION_FROM_QUESTION_SYSTEM_PROMPT,
     TEMPLATIZED_QUESTION_FROM_QUESTION_USER_PROMPT,
     GROUND_TRUTH_FUNCTION_FROM_REASONING_SYSTEM_PROMPT,
@@ -149,8 +149,8 @@ class GroundTruthQuestionAnswer:
             assert factual_assignment is not None, "Factual assignment is required"
             eval_result = function_reasoning.evaluate(**factual_assignment)
             assert (
-                eval_result == expected_result
-            ), "Expected result does not match the function output"
+                abs(eval_result - expected_result) < 1e-6
+            ), f"Expected result {expected_result} does not match the function output {eval_result}"
 
         if return_factual_assignment:
             return (
