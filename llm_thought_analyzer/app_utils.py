@@ -10,12 +10,18 @@ class MergedNode:
         self.node_type = node_type  # 'step' or 'input'
         self.sources = set()  # Store sample_ids or other identifiers
         self.reasoning_paths = {}  # Map sample_id to its reasoning path
+        # Relative topological level (0.0 to 1.0), -1 for inputs, None initially?
+        self.relative_level = 1.1  # Use a value > 1 to ensure first assignment takes
         # Add other relevant attributes if needed, e.g., shape based on source mix?
 
     def get_agraph_node(self):
         """Converts the MergedNode to a streamlit_agraph Node."""
         label = self.variable
-        title = f"{self.expression}\\nSources: {', '.join(sorted(list(self.sources)))}"
+        title = (
+            f"{self.expression} || freq: {len(self.sources)}"
+            if self.node_type == "step"
+            else self.expression
+        )
         shape = "box" if self.node_type == "input" else "ellipse"
 
         # Determine color based on node type and source
@@ -106,6 +112,15 @@ def process_merged_graph_data(data: dict):
 
         local_step_id_to_merged_node_key = {}
 
+        # Find max level *in this specific path*
+        max_level_in_path = 0
+        for level_data in reasoning_path:
+            if not isinstance(level_data, (list, tuple)) or len(level_data) != 2:
+                continue
+            level, _ = level_data
+            if level > max_level_in_path:
+                max_level_in_path = level
+
         # A. Process Input Variables
         for var_name in inputs.keys():
             node_key = ("input", var_name)
@@ -118,6 +133,8 @@ def process_merged_graph_data(data: dict):
                     node_type="input",
                 )
                 node_id_counter += 1
+                # Assign relative level -1 for inputs only when creating
+                unique_nodes[node_key].relative_level = -1
             unique_nodes[node_key].sources.add(sample_id)
 
         # B. Process Steps for this reasoning path
@@ -127,6 +144,11 @@ def process_merged_graph_data(data: dict):
             level, steps_in_level = level_data
             if not isinstance(steps_in_level, list):
                 continue
+
+            # Calculate relative level for this step
+            current_relative_level = (
+                (level / max_level_in_path) if max_level_in_path > 0 else 0.0
+            )
 
             for step in steps_in_level:
                 if not isinstance(step, dict):
@@ -150,10 +172,15 @@ def process_merged_graph_data(data: dict):
                         node_type="step",
                     )
                     node_id_counter += 1
+                    # Initial relative level assigned here
+                    unique_nodes[node_key].relative_level = current_relative_level
 
                 unique_nodes[node_key].sources.add(sample_id)
                 unique_nodes[node_key].reasoning_paths[sample_id] = reasoning_path
                 local_step_id_to_merged_node_key[step_id] = node_key
+                # Update relative level only if the current path places it relatively earlier
+                if current_relative_level < unique_nodes[node_key].relative_level:
+                    unique_nodes[node_key].relative_level = current_relative_level
 
         # C. Create Edges for this reasoning path
         for level_data in reasoning_path:
@@ -213,8 +240,9 @@ def process_merged_graph_data(data: dict):
                         edge_tuple = (
                             source_merged_node.node_id,
                             target_merged_node.node_id,
-                            "gray",
+                            "rgba(200, 200, 200, 0.5)",  # Lighter, semi-transparent gray
                             1,
+                            "none",  # No arrows
                         )
                         edges_set.add(edge_tuple)
 
@@ -222,8 +250,16 @@ def process_merged_graph_data(data: dict):
     agraph_nodes = [mn.get_agraph_node() for mn in unique_nodes.values()]
 
     # Convert edge tuples set back to list of Edge objects
-    agraph_edges = [
-        Edge(source=s, target=t, color=c, width=w) for s, t, c, w in edges_set
-    ]
+    # Handle variable tuple lengths (some have arrows, some don't)
+    agraph_edges = []
+    for edge_data in edges_set:
+        if len(edge_data) == 5:  # source, target, color, width, arrows
+            s, t, c, w, a = edge_data
+            agraph_edges.append(Edge(source=s, target=t, color=c, width=w, arrows=a))
+        elif len(edge_data) == 4:  # source, target, color, width (default arrows)
+            s, t, c, w = edge_data
+            agraph_edges.append(Edge(source=s, target=t, color=c, width=w))
+        # Add more conditions if other tuple structures exist
 
+    # Return unique_nodes dictionary as well, it contains level info
     return agraph_nodes, agraph_edges, unique_nodes
